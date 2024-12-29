@@ -18,8 +18,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-[#0000]/25 fixed w-full z-50 py-4 text-white">
-      <div className="navbar md:w-11/12 lg:w-11/12 mx-auto">
+    <div className="bg-[#0000]/25 fixed w-full z-50 py-2 text-white">
+      <div className="navbar md:w-11/12 lg:w-11/12 mx-auto justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,14 +40,14 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm gap-6 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-bold"
+              className="menu menu-sm gap-6 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow font-bold text-black py-8 px-10"
             >
               {links}
             </ul>
           </div>
           <a className="flex flex-col">
             <div>
-              <h2 className="text-xl font-bold logo">URBAN FEAST</h2>
+              <h2 className="lg:text-xl font-bold logo">URBAN FEAST</h2>
             </div>
             <span className="text-lg logo tracking-widest">RESTARAUNT</span>
           </a>
@@ -56,8 +56,8 @@ const Navbar = () => {
           <ul className="menu menu-horizontal items-center gap-6 px-1 font-extrabold">
             {links}
           </ul>
-          <a className="btn">Button</a>
         </div>
+        <a className="btn">Button</a>
       </div>
     </div>
   );

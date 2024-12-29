@@ -3,8 +3,8 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <div className="flex">
-        <div className="bg-[#1F2937] text-white w-1/2 p-24 flex justify-center">
+      <div className="flex lg:flex-row md:flex-row flex-col">
+        <div className="bg-[#1F2937] text-white lg:w-1/2 p-24 flex justify-center">
           <aside className="text-center">
             <h2 className="text-2xl font-bold">CONTACT US</h2>
             <p className="text-lg text-base-300 my-2">
@@ -13,7 +13,7 @@ const Footer = () => {
             </p>
           </aside>
         </div>
-        <div className="bg-[#111827] w-1/2 text-white p-24 flex justify-center">
+        <div className="bg-[#111827] lg:w-1/2 text-white p-24 flex justify-center">
           <nav>
             <h6 className="footer-title">Social</h6>
             <div className="grid grid-flow-col gap-4">
@@ -56,7 +56,7 @@ const Footer = () => {
       </div>
       <div className="bg-black">
         <footer className="footer flex justify-center text-neutral-content items-center p-4">
-          <h2 className="text-center  text-lg">
+          <h2 className="text-center  lg:text-lg">
             Copyright © Urbanfeast. All rights reserved.
           </h2>
         </footer>
