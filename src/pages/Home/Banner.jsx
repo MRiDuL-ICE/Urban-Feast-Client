@@ -85,7 +85,6 @@ const Images = ({ imgIndex }) => {
   return (
     <>
       {imgs.map((imgSrc, idx) => {
-        console.log(`Loading image: ${imgSrc}`); // Debugging step
         return (
           <motion.div
             key={idx}
