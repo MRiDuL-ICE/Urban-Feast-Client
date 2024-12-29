@@ -14,7 +14,7 @@ const MenuItem = ({ item }) => {
             className="w-72 mt-2 object-cover h-24 rounded-[0px_300px_00px_300px]"
           />
         </div>
-        <div className="p-4 flex lg:flex-row flex-col md:flex-row">
+        <div className="p-4 flex lg:flex-row flex-col md:flex-row gap-2">
           <div>
             <h2 className="text-xl font-semibold mb-2 logo uppercase">
               {item.name} {"  "}---------------
