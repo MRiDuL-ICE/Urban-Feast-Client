@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import shoplogo from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 
 const Navbar = () => {
   const links = (
     <>
-      <Link>Home</Link>
-      <Link>Food</Link>
-      <Link>About</Link>
-      <Link>Contact Us</Link>
+      <Link>HOME</Link>
+      <Link>CONTACT US</Link>
+      <Link>DAHSBOARD</Link>
+      <Link>OUR MENU</Link>
+      <Link>
+        <div className="flex items-center">
+          OUR SHOP <img className="w-12" src={shoplogo} alt="" />
+        </div>
+      </Link>
     </>
   );
 
@@ -39,10 +45,15 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="flex flex-col">
+            <div>
+              <h2 className="text-xl font-bold logo">URBAN FEAST</h2>
+            </div>
+            <span className="text-lg logo tracking-widest">RESTARAUNT</span>
+          </a>
         </div>
-        <div className="navbar-end hidden lg:flex gap-16">
-          <ul className="menu menu-horizontal gap-6 px-1 font-extrabold text-lg">
+        <div className="navbar-end hidden lg:flex gap-10">
+          <ul className="menu menu-horizontal items-center gap-6 px-1 font-extrabold">
             {links}
           </ul>
           <a className="btn">Button</a>
