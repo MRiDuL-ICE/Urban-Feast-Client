@@ -15,12 +15,12 @@ const ChefRecommends = () => {
   }, []);
 
   return (
-    <div className="lg:w-11/12 mx-auto">
+    <div className="lg:w-11/12 mx-auto w-11/12">
       <SectionTitle
         subHeading={"---Should Try---"}
         heading={"CHEF RECOMMENDS"}
       ></SectionTitle>
-      <div className="grid lg:grid-cols-4 gap-6">
+      <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1">
         {items.map((item, _id) => (
           <MenuCard key={item._id} item={item}></MenuCard>
         ))}

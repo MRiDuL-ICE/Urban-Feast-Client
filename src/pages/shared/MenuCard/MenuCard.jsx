@@ -7,7 +7,7 @@ const MenuCard = ({ item }) => {
         <img src={item.image} alt={item.name} className="w-full rounded-md" />
         <div className="p-6">
           <div className="h-32">
-            <h2 className="text-xl font-bold mb-2 logo text-center">
+            <h2 className="lg:text-xl text-lg font-bold mb-2 logo text-center">
               {item.name}
             </h2>
             <p className="text-gray-700 mb-4 text-center">{item.recipe}</p>
