@@ -9,7 +9,7 @@ const Featured = () => {
         backgroundImage: `url(${featuredImg})`,
         backdropFilter: "blur(48px)",
       }}
-      className="text-base-100"
+      className="text-base-100 bg-fixed"
     >
       <div className=" mx-auto my-10 bg-black bg-opacity-55 py-10">
         <SectionTitle
