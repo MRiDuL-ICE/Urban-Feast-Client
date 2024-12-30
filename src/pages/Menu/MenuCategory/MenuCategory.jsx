@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from "react";
 import MenuItem from "../../shared/MenuItem/MenuItem";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useMenu from "../../../Hooks/UseMenu";
+import Cover from "../../shared/Cover/Cover";
 
-const MenuCategory = () => {
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    fetch("menu.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const offeredMenu = data.filter((item) => item.category === "offered");
-        setItems(offeredMenu);
-      });
-  }, []);
+const MenuCategory = ({ items, subHeading, heading, img }) => {
+  //   const [menu, loading] = useMenu();
+  //   const offered = menu.filter((item) => item.category === "offered");
   return (
-    <div>
-      <SectionTitle
-        subHeading={"---Check it out---"}
-        heading={"FROM OUR MENU"}
-      ></SectionTitle>
-      <div className="lg:w-11/12 md:w-11/12 w-11/12 mx-auto grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8">
+    <div className="my-10">
+      {heading && (
+        <Cover img={img} subHeading={subHeading} heading={heading}></Cover>
+      )}
+      <div className="lg:w-11/12 md:w-11/12 w-11/12 mx-auto grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 my-16">
         {items.map((item, _id) => (
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
