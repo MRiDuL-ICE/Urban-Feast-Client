@@ -8,7 +8,7 @@ const Navbar = () => {
       <Link>HOME</Link>
       <Link>CONTACT US</Link>
       <Link>DAHSBOARD</Link>
-      <Link>OUR MENU</Link>
+      <Link to={"/menu"}>OUR MENU</Link>
       <Link>
         <div className="flex items-center">
           OUR SHOP <img className="w-12" src={shoplogo} alt="" />
