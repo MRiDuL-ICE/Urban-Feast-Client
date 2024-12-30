@@ -42,7 +42,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div>
+    <div className="w-11/12 mx-auto overflow-hidden">
       <SectionTitle
         heading={"TESTIMONIALS"}
         subHeading={"---What Our Clients Say---"}
@@ -53,9 +53,9 @@ const Testimonials = () => {
           subHeading={"---What Our Clients Say---"}
         ></SectionTitle>
         <motion.div
-          className="flex gap-8 px-4"
+          className="flex gap-8 px-4 w-11/12 mx-auto "
           animate={{
-            x: [-1000, -2000],
+            x: [-1400, -2000],
           }}
           transition={{
             x: {
@@ -69,7 +69,7 @@ const Testimonials = () => {
           {[...reviews, ...reviews].map((review, index) => (
             <div
               key={`${review.id}-${index}`}
-              className="flex-shrink-0 w-[600px] bg-white border border-purple-100 rounded-sm p-8 relative"
+              className="flex-shrink-0 w-[600px] shadow-xl bg-white border border-purple-100 rounded-sm p-8 relative"
             >
               <div className="flex flex-col items-center text-center mb-8">
                 <div className="flex justify-center mb-4">
