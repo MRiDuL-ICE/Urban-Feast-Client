@@ -17,7 +17,7 @@ const Cover = ({ img, heading, subHeading }) => {
           // }}
         >
           <div className=""></div>
-          <div className="hero-content text-base-100 w-11/12 rounded-md text-center bg-black bg-opacity-45 lg:px-60 lg:py-20 backdrop-blur-sm">
+          <div className="hero-content text-base-100 w-10/12 rounded-md text-center bg-black bg-opacity-45 lg:px-60 lg:py-20 backdrop-blur-sm">
             <div className="lg:max-w-3xl mx-auto">
               <h1 className="mb-5 lg:text-6xl text-2xl font-bold logo">
                 {heading}

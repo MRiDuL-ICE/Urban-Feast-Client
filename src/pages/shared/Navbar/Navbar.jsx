@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-[#0000]/25 fixed w-full z-50 py-2 text-white">
-      <div className="navbar md:w-11/12 lg:w-11/12 mx-auto justify-between">
+      <div className="navbar md:w-10/12 lg:w-10/12 mx-auto justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

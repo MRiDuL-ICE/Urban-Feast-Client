@@ -4,7 +4,7 @@ import chefImg from "../../../assets/home/chef-service.jpg";
 
 const UrbanFeast = () => {
   return (
-    <div className="w-11/12 mx-auto h-[800px]">
+    <div className="w-10/12 mx-auto h-[800px]">
       <Cover
         img={chefImg}
         heading={"Urban Feast"}

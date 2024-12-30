@@ -17,10 +17,10 @@ const Featured = () => {
           heading={"FROM OUR MENU"}
         ></SectionTitle>
         <div className="flex lg:flex-row md:flex-row flex-col justify-center items-center gap-14 py-16">
-          <div className="lg:w-1/2 w-11/12 flex justify-end">
+          <div className="lg:w-1/2 w-10/12 flex justify-end">
             <img className="lg:w-[550px]" src={featuredImg} alt="" />
           </div>
-          <div className="lg:w-1/2 w-11/12 mx-auto">
+          <div className="lg:w-1/2 w-10/12 mx-auto">
             <p className="text-base-100 lg:w-8/12 justify-center items-center">
               <p className="text-lg">March 20, 2023</p>
               <p className="text-xl py-1">WHERE CAN I GET SOME?</p>

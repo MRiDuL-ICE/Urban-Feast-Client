@@ -15,7 +15,7 @@ const ChefRecommends = () => {
   }, []);
 
   return (
-    <div className="lg:w-11/12 mx-auto w-11/12">
+    <div className="lg:w-10/12 mx-auto w-10/12">
       <SectionTitle
         subHeading={"---Should Try---"}
         heading={"CHEF RECOMMENDS"}
