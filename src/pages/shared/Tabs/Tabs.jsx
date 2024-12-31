@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const Tabs = ({ Tabs }) => {
+const Tabs = ({ Tabs, setSelectedCategory }) => {
   const [selected, setSelected] = useState(Tabs[0]);
+
+  const handleTabClick = (tab) => {
+    setSelected(tab);
+    setSelectedCategory(tab);
+  };
+
   return (
     <div className="px-4 my-10 py-1 lg:py-4 rounded-full border lg:border-2 border-[#ffb710] flex text-lg items-center justify-center flex-wrap gap-3 lg:w-fit w-11/12 mx-auto">
       {Tabs.map((tab) => (
         <Chip
           text={tab}
           selected={selected === tab}
-          setSelected={setSelected}
+          setSelected={handleTabClick}
           key={tab}
         />
       ))}
