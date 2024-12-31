@@ -16,17 +16,19 @@ const Shop = () => {
       : menu.filter((item) => item.category === selectedCategory);
 
   return (
-    <div className="lg:w-10/12 mx-auto w-10/12">
+    <div className="">
       <Cover
         img={shopImg}
         heading={"OUR SHOP"}
         subHeading={"Would you like to try a dish?"}
       ></Cover>
       <Tabs Tabs={category} setSelectedCategory={setSelectedCategory}></Tabs>
-      <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1s">
-        {filteredMenu.map((item) => (
-          <MenuCard key={item._id} item={item}></MenuCard>
-        ))}
+      <div className="w-10/12 mx-auto">
+        <div className="grid lg:grid-cols-4 gap-6 md:grid-cols-2 grid-cols-1s">
+          {filteredMenu.map((item) => (
+            <MenuCard key={item._id} item={item}></MenuCard>
+          ))}
+        </div>
       </div>
     </div>
   );
