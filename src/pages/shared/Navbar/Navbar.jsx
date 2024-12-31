@@ -9,7 +9,7 @@ const Navbar = () => {
       <Link>CONTACT US</Link>
       <Link>DAHSBOARD</Link>
       <Link to={"/menu"}>OUR MENU</Link>
-      <Link>
+      <Link to={"/shop"}>
         <div className="flex items-center">
           OUR SHOP <img className="w-12" src={shoplogo} alt="" />
         </div>
