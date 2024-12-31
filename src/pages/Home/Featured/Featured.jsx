@@ -33,7 +33,7 @@ const Featured = () => {
             </p>
             <div className="py-6">
               <button
-                className="px-4 uppercase shadow-md text-base-100 bg-transparent
+                className="px-4 uppercase shadow-md hover:bg-[#111827] text-base-100 bg-transparent
         p-3 rounded-lg border-b-[3px] border-base-100 hover:scale-105 hover:shadow-2xl transform transition-all duration-500 font-bold"
               >
                 Read More

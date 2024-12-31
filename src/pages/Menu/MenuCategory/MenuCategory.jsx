@@ -21,7 +21,7 @@ const MenuCategory = ({ items, subHeading, heading, img }) => {
         <div className="flex justify-center my-10">
           <button
             className="px-4 uppercase shadow-xl 
-        p-4 rounded-lg border-b-[3px] border-black hover:scale-105 hover:shadow-2xl transform transition-all duration-500 font-bold"
+        p-4 rounded-lg border-b-[3px] hover:bg-[#111827] hover:text-white hover:border-[#ffb300] border-black hover:scale-105 hover:shadow-2xl transform transition-all duration-500 font-bold"
           >
             ORDER YOUR FAVOURITE FOOD
           </button>

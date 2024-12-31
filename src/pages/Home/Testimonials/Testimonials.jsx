@@ -7,7 +7,7 @@ const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -43,10 +43,6 @@ const Testimonials = () => {
 
   return (
     <div className="w-11/12 mx-auto overflow-hidden">
-      <SectionTitle
-        heading={"TESTIMONIALS"}
-        subHeading={"---What Our Clients Say---"}
-      ></SectionTitle>
       <div className="container mx-auto px-4 py-8">
         <SectionTitle
           heading={"TESTIMONIALS"}
