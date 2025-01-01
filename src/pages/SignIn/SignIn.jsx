@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import sticker from "../../assets/others/authentication2.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -16,6 +16,9 @@ import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const { setUser, signIn, setLoading } = useAuth();
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
@@ -34,6 +37,7 @@ const SignIn = () => {
         });
         setUser(user);
         setLoading(false);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         Swal.fire({

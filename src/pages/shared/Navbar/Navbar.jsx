@@ -2,8 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import shoplogo from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 import { LuLogIn } from "react-icons/lu";
+import useAuth from "../../../Hooks/useAuth";
+import { CgLogOut } from "react-icons/cg";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut, setUser, setLoading } = useAuth();
+
+  const handleLogout = () => {
+    logOut()
+      .then((res) => {
+        Swal.fire({
+          title: "Successful!",
+          text: "Logout successfully done!",
+          icon: "success",
+        });
+        setUser(null);
+        setLoading(false);
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Something Went!",
+          text: err,
+          icon: "success",
+        });
+      });
+  };
+
   const links = (
     <>
       <Link>HOME</Link>
@@ -15,6 +40,25 @@ const Navbar = () => {
           OUR SHOP <img className="w-12" src={shoplogo} alt="" />
         </div>
       </Link>
+      {user?.email && (
+        <div className="">
+          <img className="rounded-full w-12 h-12" src={user?.photoURL} alt="" />
+        </div>
+      )}
+      {user?.email ? (
+        <button
+          onClick={handleLogout}
+          className="px-2 flex text-sm py-3 items-center justify-center gap-1 font-bold bg-transparent border-[1px] rounded-md p-2 w-[112px] hover:border-none hover:bg-[#ffb300] transform transition-all duration-500"
+        >
+          Sign Out <CgLogOut />
+        </button>
+      ) : (
+        <Link to={"/signin"}>
+          <button className="px-2 flex items-center justify-center gap-1 font-bold bg-transparent border-[1px] rounded-md p-2 w-[112px] hover:border-none hover:bg-[#ffb300] transform transition-all duration-500">
+            Sign In <LuLogIn />
+          </button>
+        </Link>
+      )}
     </>
   );
 
@@ -58,11 +102,6 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link to={"/signin"}>
-          <button className="px-2 flex items-center justify-center gap-1 font-bold bg-transparent border-[1px] rounded-md p-2 w-[112px] hover:border-none hover:bg-[#ffb300] transform transition-all duration-500">
-            Sign In <LuLogIn />
-          </button>
-        </Link>
       </div>
     </div>
   );
