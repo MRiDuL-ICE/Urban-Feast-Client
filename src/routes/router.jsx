@@ -6,8 +6,6 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Shop from "../pages/Shop/Shop/Shop";
 import SignUp from "../pages/SignUp/SignUp";
 import SignIn from "../pages/SignIn/SignIn";
-import PrivateRoute from "./PrivateRoute";
-import Demo from "../pages/shared/Demo";
 
 const router = createBrowserRouter([
   {
@@ -33,14 +31,6 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn></SignIn>,
-      },
-      {
-        path: "demo",
-        element: (
-          <PrivateRoute>
-            <Demo></Demo>
-          </PrivateRoute>
-        ),
       },
     ],
   },

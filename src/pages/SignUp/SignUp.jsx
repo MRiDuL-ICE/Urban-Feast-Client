@@ -23,7 +23,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { user, createNewUser, setLoading } = useAuth();
+  const { user, createNewUser, setLoading, logOut, setUser } = useAuth();
 
   const onSubmit = (data) => {
     createNewUser(data.email, data.password, data.displayName, data.photoURL)
@@ -35,6 +35,13 @@ const SignUp = () => {
         });
         setLoading(false);
         navigate("/signin");
+        logOut()
+          .then(() => {
+            setUser(null);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         Swal.fire({
