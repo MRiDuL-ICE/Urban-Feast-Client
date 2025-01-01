@@ -11,8 +11,36 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { user, createNewUser, setLoading } = useAuth();
+  console.log(user);
+  const handleSignup = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const displayName = form.get("displayName");
+    const email = form.get("email");
+    const photoURL = form.get("photoURL");
+    const password = form.get("password");
+    createNewUser(email, password, displayName, photoURL)
+      .then((res) => {
+        Swal.fire({
+          title: "Successful!",
+          text: "Registration successfully done!",
+          icon: "success",
+        });
+        setLoading(false);
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Somthing Wrong!",
+          text: err,
+          icon: "error",
+        });
+      });
+  };
   return (
     <div
       style={{ backgroundImage: `url(${bgImg})` }}
@@ -30,7 +58,7 @@ const SignUp = () => {
             <h2 className="lg:text-4xl text-xl text-center font-bold">
               Sign Up
             </h2>
-            <form onSubmit={""} className="flex flex-col gap-3">
+            <form onSubmit={handleSignup} className="flex flex-col gap-3">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text font-semibold text-[#444444]">
@@ -39,7 +67,7 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
-                  name="name"
+                  name="displayName"
                   placeholder="Enter Your Name"
                   className="rounded-md p-3 px-7 lg:p-4"
                   required
@@ -55,6 +83,20 @@ const SignUp = () => {
                   type="email"
                   name="email"
                   placeholder="Enter Your Email"
+                  className="rounded-md p-3 px-7 lg:p-4"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text font-semibold text-[#444444]">
+                    Email
+                  </span>
+                </label>
+                <input
+                  type="url"
+                  name="photoURL"
+                  placeholder="Enter Your photoURL"
                   className="rounded-md p-3 px-7 lg:p-4"
                   required
                 />
