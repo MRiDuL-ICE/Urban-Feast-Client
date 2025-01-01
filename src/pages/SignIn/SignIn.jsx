@@ -113,7 +113,7 @@ const SignIn = () => {
                 <p className="text-[#D1A054]">
                   New here?{" "}
                   <span className="font-bold">
-                    <Link>Create New Account</Link>
+                    <Link to={"/signup"}>Create New Account</Link>
                   </span>
                 </p>
               </div>

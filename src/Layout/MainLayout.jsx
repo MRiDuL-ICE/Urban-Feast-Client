@@ -6,11 +6,12 @@ import Footer from "../pages/shared/Footer/Footer";
 const MainLayout = () => {
   const location = useLocation();
   const isLogin = location.pathname.includes("signin");
+  const isSignup = location.pathname.includes("signup");
   return (
     <div>
-      {isLogin || <Navbar></Navbar>}
+      {isLogin || isSignup || <Navbar></Navbar>}
       <Outlet></Outlet>
-      {isLogin || <Footer></Footer>}
+      {isLogin || isSignup || <Footer></Footer>}
     </div>
   );
 };
