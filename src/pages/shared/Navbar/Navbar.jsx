@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import shoplogo from "../../../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
+import { LuLogIn } from "react-icons/lu";
 
 const Navbar = () => {
   const links = (
@@ -57,7 +58,11 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn">Button</a>
+        <Link to={"/signin"}>
+          <button className="px-2 flex items-center justify-center gap-1 font-bold bg-transparent border-[1px] rounded-md p-2 w-[112px] hover:border-none hover:bg-[#ffb300] transform transition-all duration-500">
+            Sign In <LuLogIn />
+          </button>
+        </Link>
       </div>
     </div>
   );
