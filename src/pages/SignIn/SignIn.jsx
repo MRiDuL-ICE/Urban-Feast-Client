@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import sticker from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  LoadCanvasTemplateNoReload,
+  validateCaptcha,
+} from "react-simple-captcha";
 
 const SignIn = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const password = form.get("password");
+    console.log(email, password);
+  };
+
+  const handleValidateCaptcha = (e) => {
+    e.preventDefault();
+    console.log(e);
+  };
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${bgImg})` }}
@@ -22,7 +45,7 @@ const SignIn = () => {
           </div>
           <div className="w-[540px] shrink-0">
             <h2 className="text-4xl text-center font-bold">Sign In</h2>
-            <form className="card-body gap-3">
+            <form onSubmit={handleLogin} className="card-body gap-3">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text font-semibold text-[#444444]">
@@ -31,6 +54,7 @@ const SignIn = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="rounded-md p-4"
                   required
@@ -44,37 +68,29 @@ const SignIn = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="rounded-md p-4"
                   required
                 />
               </div>
               <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-[#444444]"></span>
+                <label className="label rounded-md">
+                  <LoadCanvasTemplate />
                 </label>
                 <input
-                  type="recaptcha"
-                  placeholder="recaptcha"
+                  type="text"
+                  name="captcha"
+                  placeholder="type the captcha above"
                   className="rounded-md p-4"
                   required
                 />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-semibold text-[#444444]"></span>
-                </label>
-                <input
-                  type="recaptcha"
-                  placeholder="recaptcha"
-                  className="rounded-md p-4"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                <button
+                  onClick={handleValidateCaptcha}
+                  className="btn btn-outline btn-sm mt-4 w-32 rounded-md"
+                >
+                  Validate
+                </button>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary bg-[#D1A054B3] bg-opacity-[70%] border-none text-black hover:bg-gray-400 hover:border-[1px] hover:border-black transform transition-all duration-500">
