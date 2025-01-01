@@ -20,7 +20,7 @@ const SignUp = () => {
     >
       <div
         style={{ backgroundImage: `url(${bgImg})` }}
-        className="w-11/12 h-[52rem] border-2 mx-auto shadow-2xl p-14 py-10 flex justify-center items-center"
+        className="w-11/12 lg:h-[50rem] h-[52rem] border-2 mx-auto shadow-2xl p-14 py-10 flex justify-center items-center"
       >
         <div className="flex flex-col lg:flex-row-reverse justify-between items-center gap-14">
           <div className="text-center lg:text-left lg:w-1/2">

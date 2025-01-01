@@ -39,19 +39,21 @@ const SignIn = () => {
   return (
     <div
       style={{ backgroundImage: `url(${bgImg})` }}
-      className=" h-screen p-10 py-2 flex justify-center items-center"
+      className="h-screen py-2 flex justify-center items-center"
     >
       <div
         style={{ backgroundImage: `url(${bgImg})` }}
-        className="lg:w-10/12 h-[50rem] mx-auto shadow-2xl p-14 py-10 flex justify-center items-center"
+        className="w-11/12 lg:h-[50rem] h-[58rem] border-2 mx-auto shadow-2xl p-14 py-10 flex justify-center items-center"
       >
-        <div className="flex flex-col lg:flex-row justify-between items-center">
-          <div className="text-center lg:text-left w-1/2">
-            <img className="w-[650px]" src={sticker} alt="" />
+        <div className="flex flex-col lg:flex-row-reverse justify-between items-center gap-14">
+          <div className="text-center lg:text-left lg:w-1/2">
+            <img className="lg:w-[650px] w-[350px]" src={sticker} alt="" />
           </div>
-          <div className="w-[540px] shrink-0">
-            <h2 className="text-4xl text-center font-bold">Sign In</h2>
-            <form onSubmit={handleLogin} className="card-body gap-3">
+          <div className="lg:w-[540px] w-full shrink-0">
+            <h2 className="lg:text-4xl text-xl text-center font-bold">
+              Sign In
+            </h2>
+            <form onSubmit={handleLogin} className="flex flex-col gap-5">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text font-semibold text-[#444444]">
@@ -62,7 +64,7 @@ const SignIn = () => {
                   type="email"
                   name="email"
                   placeholder="email"
-                  className="rounded-md p-4"
+                  className="rounded-md p-3 px-7 lg:p-4"
                   required
                 />
               </div>
@@ -76,12 +78,12 @@ const SignIn = () => {
                   type="password"
                   name="password"
                   placeholder="password"
-                  className="rounded-md p-4"
+                  className="rounded-md p-3 px-7 lg:p-4"
                   required
                 />
               </div>
               <div className="form-control">
-                <label className="label rounded-md">
+                <label className="label rounded-md my-2">
                   <LoadCanvasTemplate />
                 </label>
                 <input
@@ -89,12 +91,12 @@ const SignIn = () => {
                   type="text"
                   name="captcha"
                   placeholder="type the captcha above"
-                  className="rounded-md p-4"
+                  className="rounded-md p-3 px-7 lg:p-4"
                   required
                 />
                 <button
                   onClick={handleValidateCaptcha}
-                  className="btn btn-outline btn-sm mt-4 w-32 rounded-md"
+                  className="btn btn-outline btn-sm mt-6 w-32 rounded-md"
                 >
                   Validate
                 </button>
@@ -109,7 +111,7 @@ const SignIn = () => {
               </div>
             </form>
             <div className="flex justify-center flex-col items-center gap-4">
-              <div>
+              <div className="mt-6">
                 <p className="text-[#D1A054]">
                   New here?{" "}
                   <span className="font-bold">
