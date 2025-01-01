@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import bgImg from "../../assets/others/authentication.png";
 import sticker from "../../assets/others/authentication2.png";
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ import {
 } from "react-simple-captcha";
 
 const SignIn = () => {
+  const [disabled, setDisabled] = useState(true);
+  const captchaRef = useRef(null);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
@@ -21,9 +23,13 @@ const SignIn = () => {
     console.log(email, password);
   };
 
-  const handleValidateCaptcha = (e) => {
-    e.preventDefault();
-    console.log(e);
+  const handleValidateCaptcha = () => {
+    const user_captcha_value = captchaRef.current.value;
+    if (validateCaptcha(user_captcha_value) == true) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
   };
 
   useEffect(() => {
@@ -79,6 +85,7 @@ const SignIn = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input
+                  ref={captchaRef}
                   type="text"
                   name="captcha"
                   placeholder="type the captcha above"
@@ -93,7 +100,10 @@ const SignIn = () => {
                 </button>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary bg-[#D1A054B3] bg-opacity-[70%] border-none text-black hover:bg-gray-400 hover:border-[1px] hover:border-black transform transition-all duration-500">
+                <button
+                  disabled={disabled}
+                  className="btn p-3 rounded-md bg-[#ffcb3b] border-none text-black hover:bg-gray-400 hover:border-[1px] hover:border-black transform transition-all duration-500"
+                >
                   Sign In
                 </button>
               </div>
