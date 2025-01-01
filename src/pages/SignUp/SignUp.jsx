@@ -16,7 +16,6 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { user, createNewUser, setLoading } = useAuth();
-  console.log(user);
   const handleSignup = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);

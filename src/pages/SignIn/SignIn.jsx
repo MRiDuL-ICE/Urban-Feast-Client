@@ -11,8 +11,11 @@ import {
   LoadCanvasTemplateNoReload,
   validateCaptcha,
 } from "react-simple-captcha";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const { setUser, signIn, setLoading } = useAuth();
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
   const handleLogin = (e) => {
@@ -20,10 +23,28 @@ const SignIn = () => {
     const form = new FormData(e.target);
     const email = form.get("email");
     const password = form.get("password");
-    console.log(email, password);
+    signIn(email, password)
+      .then((res) => {
+        const user = res.user;
+        Swal.fire({
+          title: "Successful!",
+          text: "Successfully logged in!",
+          icon: "success",
+        });
+        setUser(user);
+        setLoading(false);
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Somthing Wrong!",
+          text: err,
+          icon: "error",
+        });
+      });
   };
 
-  const handleValidateCaptcha = () => {
+  const handleValidateCaptcha = (e) => {
+    e.preventDefault();
     const user_captcha_value = captchaRef.current.value;
     if (validateCaptcha(user_captcha_value) == true) {
       setDisabled(false);
@@ -93,13 +114,8 @@ const SignIn = () => {
                   placeholder="type the captcha above"
                   className="rounded-md p-3 px-7 lg:p-4"
                   required
+                  onBlur={handleValidateCaptcha}
                 />
-                <button
-                  onClick={handleValidateCaptcha}
-                  className="btn btn-outline btn-sm mt-6 w-32 rounded-md"
-                >
-                  Validate
-                </button>
               </div>
               <div className="form-control mt-6">
                 <button
