@@ -13,6 +13,7 @@ import {
 } from "react-simple-captcha";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const { setUser, signIn, setLoading } = useAuth();
@@ -62,6 +63,9 @@ const SignIn = () => {
       style={{ backgroundImage: `url(${bgImg})` }}
       className="h-screen py-2 flex justify-center items-center"
     >
+      <Helmet>
+        <title>Urban Feast | Sign In</title>
+      </Helmet>
       <div
         style={{ backgroundImage: `url(${bgImg})` }}
         className="w-11/12 lg:h-[50rem] h-[58rem] border-2 mx-auto shadow-2xl p-14 py-10 flex justify-center items-center"
