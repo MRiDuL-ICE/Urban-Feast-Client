@@ -36,15 +36,15 @@ const Navbar = () => {
     <>
       <Link>HOME</Link>
       <Link>CONTACT US</Link>
-      <Link>DAHSBOARD</Link>
+      <Link to={"/dashboard"}>DAHSBOARD</Link>
       <Link to={"/menu"}>OUR MENU</Link>
       <Link to={"/shop/popular"}>
         <div className="flex items-center">OUR SHOP</div>
       </Link>
-      <Link>
+      <Link to={"/dashboard/cart"}>
         <button className="text-3xl flex">
           <IoMdCart />
-          <div className="badge badge-secondary -translate-y-2 text-white">
+          <div className="badge badge-secondary border-none text-black bg-[#ffbf11] -translate-y-2">
             +{cart.length}
           </div>
         </button>
