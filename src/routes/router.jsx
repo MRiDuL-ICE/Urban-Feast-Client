@@ -10,6 +10,9 @@ import PrivateRoute from "./PrivateRoute";
 import DashBoardLayout from "../Layout/DashBoardLayout";
 import Cart from "../pages/Home/DashBoard/Cart/Cart";
 import UserHome from "../pages/Home/DashBoard/UserHome/UserHome";
+import Reservation from "../pages/Home/DashBoard/Reservation/Reservation";
+import AddReview from "../pages/Home/DashBoard/AddReview/AddReview";
+import MyBooking from "../pages/Home/DashBoard/MyBooking/MyBooking";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +56,18 @@ const router = createBrowserRouter([
       {
         path: "userHome",
         element: <UserHome></UserHome>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
+      },
+      {
+        path: "addReview",
+        element: <AddReview></AddReview>,
+      },
+      {
+        path: "myBooking",
+        element: <MyBooking></MyBooking>,
       },
     ],
   },
