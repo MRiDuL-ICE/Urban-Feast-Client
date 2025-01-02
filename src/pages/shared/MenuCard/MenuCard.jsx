@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useCart from "../../../Hooks/useCart";
 
 const MenuCard = ({ item }) => {
   const axiosSecure = useAxiosSecure();
@@ -11,6 +12,7 @@ const MenuCard = ({ item }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [, refetch] = useCart();
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
@@ -43,6 +45,7 @@ const MenuCard = ({ item }) => {
               `,
             },
           });
+          refetch();
         }
       });
     } else {
