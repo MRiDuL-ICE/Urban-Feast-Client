@@ -6,9 +6,11 @@ import useAuth from "../../../Hooks/useAuth";
 import { CgLogOut } from "react-icons/cg";
 import Swal from "sweetalert2";
 import { IoMdCart } from "react-icons/io";
+import useCart from "../../../Hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut, setUser, setLoading } = useAuth();
+  const [cart] = useCart();
 
   const handleLogout = () => {
     logOut()
@@ -43,7 +45,7 @@ const Navbar = () => {
         <button className="text-3xl flex">
           <IoMdCart />
           <div className="badge badge-secondary -translate-y-2 text-white">
-            +99
+            +{cart.length}
           </div>
         </button>
       </Link>
