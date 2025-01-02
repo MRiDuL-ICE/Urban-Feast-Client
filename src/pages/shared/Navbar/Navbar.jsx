@@ -36,7 +36,7 @@ const Navbar = () => {
       <Link>CONTACT US</Link>
       <Link>DAHSBOARD</Link>
       <Link to={"/menu"}>OUR MENU</Link>
-      <Link to={"/shop"}>
+      <Link to={"/shop/popular"}>
         <div className="flex items-center">OUR SHOP</div>
       </Link>
       <Link>

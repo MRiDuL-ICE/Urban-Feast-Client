@@ -2,8 +2,12 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const MenuCard = ({ item }) => {
+  const axiosSecure = useAxiosSecure();
+  const { name, image, price } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,25 +15,35 @@ const MenuCard = ({ item }) => {
   const handleAddToCart = (item) => {
     if (user && user.email) {
       // send data to db
-
-      Swal.fire({
-        title: "Successful!",
-        text: "Item successfully added!",
-        icon: "success",
-        showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `,
-        },
-        hideClass: {
-          popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `,
-        },
+      const cartItem = {
+        menuId: item._id,
+        email: user?.email,
+        name,
+        image,
+        price,
+      };
+      axiosSecure.post("/carts", cartItem).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Successful!",
+            text: `${name} successfully added!`,
+            icon: "success",
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `,
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `,
+            },
+          });
+        }
       });
     } else {
       Swal.fire({
