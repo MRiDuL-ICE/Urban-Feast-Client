@@ -1,11 +1,13 @@
 import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const MenuCard = ({ item }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const handleAddToCart = (item) => {
     if (user && user.email) {
       // send data to db
@@ -40,7 +42,7 @@ const MenuCard = ({ item }) => {
         confirmButtonText: "Yes, Sign In",
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/signin");
+          navigate("/signin", { state: { from: location } });
         }
       });
     }

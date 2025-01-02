@@ -3,10 +3,9 @@ import MenuItem from "../../shared/MenuItem/MenuItem";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../Hooks/UseMenu";
 import Cover from "../../shared/Cover/Cover";
+import { Link } from "react-router-dom";
 
-const MenuCategory = ({ items, subHeading, heading, img }) => {
-  //   const [menu, loading] = useMenu();
-  //   const offered = menu.filter((item) => item.category === "offered");
+const MenuCategory = ({ items, subHeading, heading, img, category }) => {
   return (
     <div className="">
       {heading && (
@@ -19,12 +18,14 @@ const MenuCategory = ({ items, subHeading, heading, img }) => {
           ))}
         </div>
         <div className="flex justify-center my-10">
-          <button
-            className="px-4 uppercase shadow-xl 
+          <Link to={`/shop/${category}`}>
+            <button
+              className="px-4 uppercase shadow-xl 
         p-4 rounded-lg border-b-[3px] hover:bg-[#111827] hover:text-white hover:border-[#ffb300] border-black hover:scale-105 hover:shadow-2xl transform transition-all duration-500 font-bold"
-          >
-            ORDER YOUR FAVOURITE FOOD
-          </button>
+            >
+              ORDER YOUR FAVOURITE FOOD
+            </button>
+          </Link>
         </div>
       </div>
     </div>

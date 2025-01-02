@@ -10,8 +10,11 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./Shop.css";
+import { useParams } from "react-router-dom";
 
 const Shop = () => {
+  const [loading, setLoading] = useState(true);
+  const { category: categoryParam } = useParams();
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -19,10 +22,18 @@ const Shop = () => {
     },
   };
   const [menu] = useMenu();
-  const category = [...new Set(menu.map((item) => item.category))];
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = ["All", ...new Set(menu.map((item) => item.category))];
+  const [selectedCategory, setSelectedCategory] = useState(
+    categoryParam || "All"
+  );
   const itemsPerPage = 8;
   const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   const filteredMenu =
     selectedCategory === "All"
@@ -42,7 +53,11 @@ const Shop = () => {
         heading={"OUR SHOP"}
         subHeading={"Would you like to try a dish?"}
       ></Cover>
-      <Tabs Tabs={category} setSelectedCategory={setSelectedCategory}></Tabs>
+      <Tabs
+        Tabs={categories}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      ></Tabs>
       <Swiper
         pagination={pagination}
         modules={[Pagination]}

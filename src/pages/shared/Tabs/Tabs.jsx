@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Tabs = ({ Tabs, setSelectedCategory }) => {
-  const [selected, setSelected] = useState(Tabs[0]);
+const Tabs = ({ Tabs, setSelectedCategory, selectedCategory }) => {
+  const [selected, setSelected] = useState(selectedCategory);
+
+  useEffect(() => {
+    setSelected(selectedCategory);
+  }, [selectedCategory]);
 
   const handleTabClick = (tab) => {
     setSelected(tab);

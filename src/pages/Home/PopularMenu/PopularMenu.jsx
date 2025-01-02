@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { div } from "motion/react-client";
 import MenuItem from "../../shared/MenuItem/MenuItem";
 import useMenu from "../../../Hooks/UseMenu";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
   const [menu, loading] = useMenu();
@@ -20,12 +21,14 @@ const PopularMenu = () => {
         ))}
       </div>
       <div className="flex justify-center my-10">
-        <button
-          className="px-4 uppercase shadow-xl 
+        <Link to={"/shop/popular"}>
+          <button
+            className="px-4 uppercase shadow-xl 
         p-4 rounded-lg border-b-[3px] hover:bg-[#111827] hover:text-white hover:border-[#ffb300] border-black hover:scale-105 hover:shadow-2xl transform transition-all duration-500 font-bold"
-        >
-          view full menu
-        </button>
+          >
+            view full menu
+          </button>
+        </Link>
       </div>
     </div>
   );
