@@ -1,6 +1,51 @@
 import React from "react";
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MenuCard = ({ item }) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const handleAddToCart = (item) => {
+    if (user && user.email) {
+      // send data to db
+
+      Swal.fire({
+        title: "Successful!",
+        text: "Item successfully added!",
+        icon: "success",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
+      });
+    } else {
+      Swal.fire({
+        title: "Login required",
+        text: "Please log in to add to the card",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Sign In",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signin");
+        }
+      });
+    }
+  };
+
   return (
     <div className="my-6 hover:-translate-y-2 transform transition-all duration-500 rounded-md">
       <div className="bg-white rounded-md shadow-lg">
@@ -17,6 +62,7 @@ const MenuCard = ({ item }) => {
           </div>
           <div className="flex justify-center items-center">
             <button
+              onClick={() => handleAddToCart(item)}
               className="px-4 uppercase shadow-md text-[#ffbd23] 
         p-3 rounded-lg border-b-[3px] border-[#ffbd23] hover:scale-105 hover:bg-[#111827] hover:shadow-2xl transform transition-all duration-500 font-bold"
             >

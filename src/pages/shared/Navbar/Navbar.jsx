@@ -5,6 +5,7 @@ import { LuLogIn } from "react-icons/lu";
 import useAuth from "../../../Hooks/useAuth";
 import { CgLogOut } from "react-icons/cg";
 import Swal from "sweetalert2";
+import { IoMdCart } from "react-icons/io";
 
 const Navbar = () => {
   const { user, logOut, setUser, setLoading } = useAuth();
@@ -36,12 +37,18 @@ const Navbar = () => {
       <Link>DAHSBOARD</Link>
       <Link to={"/menu"}>OUR MENU</Link>
       <Link to={"/shop"}>
-        <div className="flex items-center">
-          OUR SHOP <img className="w-12" src={shoplogo} alt="" />
-        </div>
+        <div className="flex items-center">OUR SHOP</div>
+      </Link>
+      <Link>
+        <button className="text-3xl flex">
+          <IoMdCart />
+          <div className="badge badge-secondary -translate-y-2 text-white">
+            +99
+          </div>
+        </button>
       </Link>
       {user?.email && (
-        <div className="">
+        <div className="flex items-center gap-2">
           <img className="rounded-full w-12 h-12" src={user?.photoURL} alt="" />
         </div>
       )}
@@ -65,7 +72,7 @@ const Navbar = () => {
   return (
     <div className="bg-[#0000]/25 fixed w-full z-50 py-2 text-white">
       <div className="navbar md:w-10/12 lg:w-10/12 mx-auto justify-between">
-        <div className="navbar-start">
+        <div className="">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -97,7 +104,7 @@ const Navbar = () => {
             <span className="text-lg logo tracking-widest">RESTARAUNT</span>
           </a>
         </div>
-        <div className="navbar-end hidden lg:flex gap-10">
+        <div className="hidden lg:flex gap-10">
           <ul className="menu menu-horizontal items-center gap-6 px-1 font-extrabold">
             {links}
           </ul>
