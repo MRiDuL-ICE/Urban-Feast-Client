@@ -22,7 +22,13 @@ const DashBoardLayout = () => {
         <ul className="menu  bg-transparent p-2">
           <li className="text-lg  font-bold">
             <NavLink
-              className={"active:bg-transparent"}
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
               to={"/dashboard/userHome"}
             >
               <IoMdHome />
@@ -31,7 +37,13 @@ const DashBoardLayout = () => {
           </li>
           <li className="text-lg  font-bold">
             <NavLink
-              className={"active:bg-transparent"}
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
               to={"/dashboard/reservation"}
             >
               <FaCalendarAlt />
@@ -39,14 +51,29 @@ const DashBoardLayout = () => {
             </NavLink>
           </li>
           <li className="text-lg  font-bold">
-            <NavLink className={"active:bg-transparent"} to={"/dashboard/cart"}>
+            <NavLink
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
+              to={"/dashboard/cart"}
+            >
               <FaCartShopping />
               My Cart
             </NavLink>
           </li>
           <li className="text-lg  font-bold">
             <NavLink
-              className={"active:bg-transparent"}
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
               to={"/dashboard/addReview"}
             >
               <TbStars />
@@ -55,7 +82,13 @@ const DashBoardLayout = () => {
           </li>
           <li className="text-lg  font-bold">
             <NavLink
-              className={"active:bg-transparent"}
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
               to={"/dashboard/myBooking"}
             >
               <AiFillSchedule />
