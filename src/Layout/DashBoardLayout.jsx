@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { FaCartShopping } from "react-icons/fa6";
-import { IoMdHome } from "react-icons/io";
+import { FaHome } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { TbStars } from "react-icons/tb";
 import { AiFillSchedule } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const DashBoardLayout = () => {
   return (
@@ -31,7 +32,9 @@ const DashBoardLayout = () => {
               }
               to={"/dashboard/userHome"}
             >
-              <IoMdHome />
+              <span className="text-2xl -translate-y-1">
+                <FaHome />
+              </span>
               User Home
             </NavLink>
           </li>
@@ -95,9 +98,42 @@ const DashBoardLayout = () => {
               My Booking
             </NavLink>
           </li>
+          <div className="divider divider-warning"></div>
+          <li className="text-lg  font-bold">
+            <NavLink
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
+              to={"/"}
+            >
+              <span className="text-2xl -translate-y-1">
+                <FaHome />
+              </span>
+              Home
+            </NavLink>
+          </li>
+          <li className="text-lg  font-bold">
+            <NavLink
+              className={({ isActive, isPending, isTransitioning }) =>
+                [
+                  isPending ? "text-white" : "",
+                  isActive ? "text-white text-xl" : "",
+                  isTransitioning ? "text-white" : "",
+                ].join(" ")
+              }
+              to={"/menu"}
+            >
+              <GiHamburgerMenu />
+              Menu
+            </NavLink>
+          </li>
         </ul>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 bg-base-200">
         <Outlet></Outlet>
       </div>
     </div>
