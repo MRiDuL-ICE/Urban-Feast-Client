@@ -7,6 +7,7 @@ import InfoCards from "./InfoCards/InfoCards";
 import phoneIcon from "../../assets/contact/telephone-100.png";
 import locationIcon from "../../assets/contact/location-100.png";
 import clockIcon from "../../assets/contact/clock-500.png";
+import ContactForm from "./ContactForm/ContactForm";
 
 const ContactUs = () => {
   return (
@@ -39,6 +40,13 @@ const ContactUs = () => {
           subHeading={`Mon - sun: 08:00 - 22:00`}
           icon={clockIcon}
         ></InfoCards>
+      </div>
+      <SectionTitle
+        heading={"CONTACT FORM"}
+        subHeading={"---Send Us a Message---s"}
+      ></SectionTitle>
+      <div className="mb-24">
+        <ContactForm></ContactForm>
       </div>
     </div>
   );
