@@ -35,7 +35,7 @@ const Navbar = () => {
   const links = (
     <>
       <Link>HOME</Link>
-      <Link>CONTACT US</Link>
+      <Link to={"/contactus"}>CONTACT US</Link>
       <Link to={"/dashboard"}>DAHSBOARD</Link>
       <Link to={"/menu"}>OUR MENU</Link>
       <Link to={"/shop/popular"}>

@@ -13,6 +13,7 @@ import UserHome from "../pages/Home/DashBoard/UserHome/UserHome";
 import Reservation from "../pages/Home/DashBoard/Reservation/Reservation";
 import AddReview from "../pages/Home/DashBoard/AddReview/AddReview";
 import MyBooking from "../pages/Home/DashBoard/MyBooking/MyBooking";
+import ContactUs from "../pages/ContactUs/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn></SignIn>,
+      },
+      {
+        path: "contactus",
+        element: <ContactUs></ContactUs>,
       },
     ],
   },

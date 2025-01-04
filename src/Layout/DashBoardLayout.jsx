@@ -7,12 +7,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { TbStars } from "react-icons/tb";
 import { AiFillSchedule } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
+import useCart from "../Hooks/useCart";
 
 const DashBoardLayout = () => {
+  const [cart] = useCart();
   return (
     <div className="flex relative">
       <div className="w-80 h-screen bg-[#ebab23] p-6 logo sticky top-0 left-0">
-        <div className="flex items-center">
+        <div className="flex items-center translate-x-6 mb-4">
           <a className="flex flex-col">
             <div>
               <h2 className="lg:text-2xl font-bold logo">URBAN FEAST</h2>
@@ -65,7 +67,7 @@ const DashBoardLayout = () => {
               to={"/dashboard/cart"}
             >
               <FaCartShopping />
-              My Cart
+              My Cart ({cart.length})
             </NavLink>
           </li>
           <li className="text-lg  font-bold">
