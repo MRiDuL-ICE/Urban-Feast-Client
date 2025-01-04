@@ -10,8 +10,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const DashBoardLayout = () => {
   return (
-    <div className="flex">
-      <div className="w-80 h-screen bg-[#ebab23] p-6 logo">
+    <div className="flex relative">
+      <div className="w-80 h-screen bg-[#ebab23] p-6 logo sticky top-0 left-0">
         <div className="flex items-center">
           <a className="flex flex-col">
             <div>
@@ -133,7 +133,7 @@ const DashBoardLayout = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1 bg-base-200">
+      <div className="flex-1 bg-base-200 overflow-y-hidden">
         <Outlet></Outlet>
       </div>
     </div>

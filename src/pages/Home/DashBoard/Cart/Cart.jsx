@@ -3,11 +3,50 @@ import useCart from "../../../../Hooks/useCart";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../../Hooks/useAuth";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
+import axios from "axios";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const Cart = () => {
   const { user } = useAuth();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/carts/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your food has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Something went wrong!",
+              text: err,
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
+
   return (
     <div className="p-4 ">
       <div>
@@ -25,15 +64,11 @@ const Cart = () => {
           </button>
         </div>
         <div className="overflow-x-auto px-24 py-10 pb-24">
-          <table className="table rounded-xl overflow-hidden">
+          <table className="table rounded-xl overflow-hidden main">
             {/* head */}
             <thead className="bg-[#EBAB23] rounded-xl text-white">
               <tr className="rounded-2xl">
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+                <th>#</th>
                 <th>Item Image</th>
                 <th>Item Name</th>
                 <th>Price</th>
@@ -41,14 +76,10 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody className="">
-              {cart.map((item) => (
+              {cart.map((item, idx) => (
                 <>
                   <tr key={item._id}>
-                    <th>
-                      <label>
-                        <input type="checkbox" className="checkbox" />
-                      </label>
-                    </th>
+                    <th>{idx + 1}</th>
                     <td>
                       <div className="flex items-center gap-3">
                         <div>
@@ -66,7 +97,10 @@ const Cart = () => {
                     <td>{item?.name}</td>
                     <td>${item?.price}</td>
                     <th>
-                      <button className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md">
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md"
+                      >
                         <RiDeleteBin6Line />
                       </button>
                     </th>
