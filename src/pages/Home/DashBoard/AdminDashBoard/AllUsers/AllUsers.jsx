@@ -52,6 +52,40 @@ const AllUsers = () => {
     });
   };
 
+  const handleUpdateRole = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, update it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/users/admin/${id}`)
+          .then((res) => {
+            if (res.data.modifiedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Updated!",
+                text: "User role has been updated.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => {
+            Swal.fire({
+              title: "Something went wrong!",
+              text: err,
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
+
   return (
     <div>
       <div>
@@ -92,7 +126,10 @@ const AllUsers = () => {
                     </td>
                     <td>{user?.email}</td>
                     <td>
-                      <button className="px-2 bg-[#EBAB23] py-[9px] rounded-md text-white text-xl">
+                      <button
+                        onClick={() => handleUpdateRole(user._id)}
+                        className="px-2 bg-[#EBAB23] py-[9px] rounded-md text-white text-xl"
+                      >
                         <FaUsers />
                       </button>
                     </td>
