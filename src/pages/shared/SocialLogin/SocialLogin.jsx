@@ -23,6 +23,7 @@ const SocialLogin = () => {
           email: user?.email,
         };
         axiosPublic.post("/users", userInfo).then((res) => {
+          console.log(res.data);
           Swal.fire({
             title: "Successful!",
             text: "Successfully logged in!",
