@@ -12,12 +12,14 @@ import { MdEmail, MdMail } from "react-icons/md";
 import DrawOutlineButton from "../pages/shared/DrawOutlineButton/DrawOutlineButton";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { MdLibraryBooks } from "react-icons/md";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAdmin from "../Hooks/useAdmin";
 
 const DashBoardLayout = () => {
   const location = useLocation();
   const [cart] = useCart();
   const isActive = (path) => location.pathname === path;
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="flex relative">
       <div className="w-84 h-screen bg-[#ebab23] p-6 logo sticky top-0 left-0">
