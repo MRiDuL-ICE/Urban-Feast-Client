@@ -15,9 +15,11 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -28,20 +30,28 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createNewUser(data.email, data.password, data.displayName, data.photoURL)
       .then((res) => {
-        Swal.fire({
-          title: "Successful!",
-          text: "Registration successfully done!",
-          icon: "success",
+        const userInfo = {
+          name: data.displayName,
+          email: data.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "Successful!",
+              text: "Registration successfully done!",
+              icon: "success",
+            });
+            setLoading(false);
+            navigate("/signin");
+            logOut()
+              .then(() => {
+                setUser(null);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
         });
-        setLoading(false);
-        navigate("/signin");
-        logOut()
-          .then(() => {
-            setUser(null);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
       })
       .catch((err) => {
         Swal.fire({
