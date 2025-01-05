@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -197,15 +198,7 @@ const SignUp = () => {
               </div>
               <p className="text-[#444444] font-semibold">Or sign in with</p>
               <div className="flex gap-6">
-                <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
-                  <FaFacebookF />
-                </button>
-                <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
-                  <FaGoogle />
-                </button>
-                <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
-                  <FaGithub />
-                </button>
+                <SocialLogin></SocialLogin>
               </div>
             </div>
           </div>
