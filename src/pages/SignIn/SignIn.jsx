@@ -15,9 +15,11 @@ import SocialLogin from "../shared/SocialLogin/SocialLogin";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { setUser, signIn, setLoading } = useAuth();
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);

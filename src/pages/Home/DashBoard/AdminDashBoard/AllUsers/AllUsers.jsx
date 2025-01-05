@@ -52,7 +52,7 @@ const AllUsers = () => {
     });
   };
 
-  const handleUpdateRole = (id) => {
+  const handleUpdateRole = (user) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -64,13 +64,13 @@ const AllUsers = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .patch(`/users/admin/${id}`)
+          .patch(`/users/admin/${user._id}`)
           .then((res) => {
             if (res.data.modifiedCount > 0) {
               refetch();
               Swal.fire({
                 title: "Updated!",
-                text: "User role has been updated.",
+                text: `${user.name} is admin now`,
                 icon: "success",
               });
             }
@@ -126,12 +126,22 @@ const AllUsers = () => {
                     </td>
                     <td>{user?.email}</td>
                     <td>
-                      <button
-                        onClick={() => handleUpdateRole(user._id)}
-                        className="px-2 bg-[#EBAB23] py-[9px] rounded-md text-white text-xl"
-                      >
-                        <FaUsers />
-                      </button>
+                      {user.role === "admin" ? (
+                        <>
+                          <p className="px-2 py-1 bg-green-600 w-24 rounded-2xl text-center text-white">
+                            Admin
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => handleUpdateRole(user)}
+                            className="px-2 bg-[#EBAB23] py-[9px] rounded-md text-white text-xl"
+                          >
+                            <FaUsers />
+                          </button>
+                        </>
+                      )}
                     </td>
                     <th>
                       <button
