@@ -19,7 +19,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const { setUser, signIn, setLoading } = useAuth();
+  const { setUser, signIn, setLoading, googleSignin } = useAuth();
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
   const handleLogin = (e) => {
@@ -28,6 +28,28 @@ const SignIn = () => {
     const email = form.get("email");
     const password = form.get("password");
     signIn(email, password)
+      .then((res) => {
+        const user = res.user;
+        Swal.fire({
+          title: "Successful!",
+          text: "Successfully logged in!",
+          icon: "success",
+        });
+        setUser(user);
+        setLoading(false);
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: "Somthing Wrong!",
+          text: err,
+          icon: "error",
+        });
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    googleSignin()
       .then((res) => {
         const user = res.user;
         Swal.fire({
@@ -148,7 +170,10 @@ const SignIn = () => {
                 <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
                   <FaFacebookF />
                 </button>
-                <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
+                <button
+                  onClick={handleGoogleSignin}
+                  className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black"
+                >
                   <FaGoogle />
                 </button>
                 <button className="w-10 h-10 text-xl rounded-full border-[1px] flex justify-center items-center border-black">
