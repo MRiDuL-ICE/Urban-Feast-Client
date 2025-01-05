@@ -5,25 +5,33 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
   const { googleSignin, setUser, setLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const axiosPublic = useAxiosPublic();
 
   const handleGoogleSignin = () => {
     googleSignin()
       .then((res) => {
         const user = res.user;
-        Swal.fire({
-          title: "Successful!",
-          text: "Successfully logged in!",
-          icon: "success",
+        const userInfo = {
+          name: user?.displayName,
+          email: user?.email,
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          Swal.fire({
+            title: "Successful!",
+            text: "Successfully logged in!",
+            icon: "success",
+          });
+          setUser(user);
+          setLoading(false);
+          navigate(from, { replace: true });
         });
-        setUser(user);
-        setLoading(false);
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         Swal.fire({
