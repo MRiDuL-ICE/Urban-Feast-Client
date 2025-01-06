@@ -19,6 +19,7 @@ import AddItems from "../pages/Home/DashBoard/AdminDashBoard/AddItems/AddItems";
 import ManageItems from "../pages/Home/DashBoard/AdminDashBoard/ManageItems/ManageItems";
 import ManageBookings from "../pages/Home/DashBoard/AdminDashBoard/ManageBookings/ManageBookings";
 import AllUsers from "../pages/Home/DashBoard/AdminDashBoard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -81,11 +82,19 @@ const router = createBrowserRouter([
       },
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>,
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "addItems",
-        element: <AddItems></AddItems>,
+        element: (
+          <AdminRoute>
+            <AddItems></AddItems>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageItems",
