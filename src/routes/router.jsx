@@ -98,7 +98,11 @@ const router = createBrowserRouter([
       },
       {
         path: "manageItems",
-        element: <ManageItems></ManageItems>,
+        element: (
+          <AdminRoute>
+            <ManageItems></ManageItems>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageBookings",

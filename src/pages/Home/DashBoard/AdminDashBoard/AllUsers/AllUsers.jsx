@@ -102,7 +102,7 @@ const AllUsers = () => {
         <div className="overflow-x-auto  py-10 pb-24">
           <table className="table rounded-xl overflow-hidden main">
             {/* head */}
-            <thead className="bg-[#EBAB23] rounded-xl text-white">
+            <thead className="bg-[#EBAB23] h-16 text-lg rounded-xl text-white">
               <tr className="rounded-2xl">
                 <th>#</th>
                 <th>Name</th>
