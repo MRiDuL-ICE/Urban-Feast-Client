@@ -1,19 +1,59 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../../../../components/SectionTitle/SectionTitle";
-import { PiForkKnifeBold } from "react-icons/pi";
+import { FaUtensils } from "react-icons/fa";
+import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddItems = () => {
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const {
+    reset,
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      const menuItem = {
+        name: data.name,
+        recipe: data.recipe,
+        image: res.data.data.display_url,
+        category: data.category,
+        price: parseFloat(data.price),
+      };
+      // console.log(menuItem);
+      const menuRes = await axiosSecure.post("/menu", menuItem);
+      if (menuRes.data.insertedId) {
+        Swal.fire({
+          title: "Successful!",
+          text: `${data.name} is added to store`,
+          icon: "success",
+        });
+        reset();
+      } else {
+        Swal.fire({
+          title: "Something Wrong!",
+          text: `${data.name} is not stored to store`,
+          icon: "error",
+        });
+      }
+    }
+  };
 
-  console.log(watch("example"));
   return (
     <div>
       <SectionTitle
@@ -31,7 +71,7 @@ const AddItems = () => {
                 <span className="font-bold">Recipe Name*</span>
               </label>
               <input
-                {...register("name")}
+                {...register("name", { required: true })}
                 placeholder="Enter Recipe Name"
                 className="h-16 input input-bordered rounded-md px-3"
               />
@@ -42,11 +82,12 @@ const AddItems = () => {
                   <span className="font-bold">Category*</span>
                 </label>
                 <select
-                  {...register("category")}
+                  defaultValue={"default"}
+                  {...register("category", { required: true })}
                   className="h-16 select select-bordered rounded-md px-3"
                 >
-                  <option disabled value="">
-                    Category
+                  <option disabled value="default">
+                    Select a Category
                   </option>
                   <option value="popular">Popular</option>
                   <option value="offered">Offered</option>
@@ -62,7 +103,7 @@ const AddItems = () => {
                   <span className="font-bold">Price*</span>
                 </label>
                 <input
-                  {...register("price")}
+                  {...register("price", { required: true })}
                   placeholder="Enter Price"
                   className="h-16 input input-bordered rounded-md px-3"
                 />
@@ -73,24 +114,24 @@ const AddItems = () => {
                 <span className="font-bold">Receipe Details*</span>
               </label>
               <textarea
-                {...register("recipe")}
+                {...register("recipe", { required: true })}
                 placeholder="Enter Receipe Details"
                 className="h-64 input input-bordered rounded-md px-3 py-3"
               />
             </div>
             <div className="form-control my-3">
               <input
-                {...register("image")}
+                {...register("image", { required: true })}
                 type="file"
                 className="file-input  file-input-bordered w-full max-w-xs"
               />
             </div>
             <button
-              className=" bg-[#EBAB23] text-white  w-44 hover:bg-slate-500 transform transition-all duration-500 rounded-md px-3 py-3 flex text-center font-bold gap-2 items-center text-xl justify-center"
+              className=" bg-[#EBAB23] uppercase text-white  w-40 hover:bg-slate-500 transform transition-all duration-500 rounded-md py-3 flex text-center font-bold gap-2 items-center justify-center"
               type="submit"
             >
               Add Item
-              <PiForkKnifeBold />
+              <FaUtensils />
             </button>
           </form>
         </div>
