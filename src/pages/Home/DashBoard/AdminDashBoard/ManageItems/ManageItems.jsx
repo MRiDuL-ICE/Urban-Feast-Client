@@ -6,6 +6,7 @@ import useAuth from "../../../../../Hooks/useAuth";
 import { FaEdit } from "react-icons/fa";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const [menu, refetch] = useMenu();
@@ -67,41 +68,39 @@ const ManageItems = () => {
             </thead>
             <tbody className="">
               {menu.map((item, idx) => (
-                <>
-                  <tr key={item._id}>
-                    <th>{idx + 1}</th>
-                    <td>
-                      <div className="flex items-center gap-3">
-                        <div>
-                          <img
-                            className="w-20 rounded-md"
-                            src={item?.image}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
-                        <div>
-                          <div className="font-bold">{user?.name}</div>
-                        </div>
+                <tr key={item._id}>
+                  <th>{idx + 1}</th>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div>
+                        <img
+                          className="w-20 rounded-md"
+                          src={item?.image}
+                          alt="Avatar Tailwind CSS Component"
+                        />
                       </div>
-                    </td>
-                    <td>{item?.name}</td>
-                    <td className="">${item?.price}</td>
-                    <th className="flex gap-4">
-                      <button
-                        onClick={() => handleUpdate(item._id)}
-                        className="text-xl flex justify-center items-center bg-[#EBAB23] text-white p-2 rounded-md"
-                      >
-                        <FaEdit />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item)}
-                        className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md"
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
-                    </th>
-                  </tr>
-                </>
+                      <div>
+                        <div className="font-bold">{user?.name}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{item?.name}</td>
+                  <td className="">${item?.price}</td>
+                  <th className="flex gap-4">
+                    <Link
+                      to={`/dashboard/updateItem/${item._id}`}
+                      className="text-xl flex justify-center items-center bg-[#EBAB23] text-white p-2 rounded-md"
+                    >
+                      <FaEdit />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item)}
+                      className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md"
+                    >
+                      <RiDeleteBin6Line />
+                    </button>
+                  </th>
+                </tr>
               ))}
             </tbody>
           </table>

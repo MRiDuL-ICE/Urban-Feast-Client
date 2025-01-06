@@ -7,7 +7,7 @@ const SectionTitle = ({ heading, subHeading }) => {
         {subHeading}
       </p>
       <span className="card bg-base-300 rounded-box grid h-1 place-items-center"></span>
-      <h2 className="lg:text-5xl md:text-4xl text-lg my-4 text-center">
+      <h2 className="lg:text-5xl md:text-4xl text-lg my-4 text-center uppercase">
         {heading}
       </h2>
       <span className="card bg-base-300 rounded-box grid h-1 place-items-center"></span>
