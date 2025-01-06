@@ -40,9 +40,6 @@ const ManageItems = () => {
       }
     });
   };
-  const handleUpdate = (id) => {
-    console.log(id);
-  };
 
   return (
     <div>
