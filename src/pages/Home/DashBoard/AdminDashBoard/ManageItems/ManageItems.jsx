@@ -4,10 +4,45 @@ import useMenu from "../../../../../Hooks/UseMenu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import useAuth from "../../../../../Hooks/useAuth";
 import { FaEdit } from "react-icons/fa";
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageItems = () => {
-  const [menu] = useMenu();
+  const [menu, refetch] = useMenu();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      const res = await axiosSecure.delete(`/menu/${item._id}`);
+      if (res.data.deletedCount > 0) {
+        refetch();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your item has been deleted.",
+          icon: "success",
+        });
+      } else {
+        Swal.fire({
+          title: "Something Wrong!",
+          text: "Your item haven't deleted yet",
+          icon: "error",
+        });
+      }
+    });
+  };
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
+
   return (
     <div>
       <SectionTitle
@@ -50,19 +85,19 @@ const ManageItems = () => {
                       </div>
                     </td>
                     <td>{item?.name}</td>
-                    <td>${item?.price}</td>
+                    <td className="">${item?.price}</td>
                     <th className="flex gap-4">
                       <button
-                        onClick={() => handleDelete(item._id)}
-                        className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md"
-                      >
-                        <RiDeleteBin6Line />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(item._id)}
+                        onClick={() => handleUpdate(item._id)}
                         className="text-xl flex justify-center items-center bg-[#EBAB23] text-white p-2 rounded-md"
                       >
                         <FaEdit />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item)}
+                        className="text-2xl bg-red-600 text-white font-bold p-1 rounded-md"
+                      >
+                        <RiDeleteBin6Line />
                       </button>
                     </th>
                   </tr>
