@@ -21,6 +21,7 @@ import ManageBookings from "../pages/Home/DashBoard/AdminDashBoard/ManageBooking
 import AllUsers from "../pages/Home/DashBoard/AdminDashBoard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import UpdateItems from "../pages/Home/DashBoard/AdminDashBoard/UpdateItems/UpdateItems";
+import Payment from "../pages/Home/DashBoard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
       {
         path: "userHome",

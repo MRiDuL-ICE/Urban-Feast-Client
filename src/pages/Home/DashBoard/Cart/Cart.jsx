@@ -4,8 +4,8 @@ import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import useAuth from "../../../../Hooks/useAuth";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { user } = useAuth();
@@ -59,9 +59,17 @@ const Cart = () => {
         <div className="flex py-8 justify-between items-center w-full px-24">
           <h2 className="text-3xl font-bold">Items: {cart.length}</h2>
           <h2 className="text-3xl font-bold">Total Price: ${totalPrice}</h2>
-          <button className="bg-[#EBAB23] px-6 p-2 rounded-md font-bold hover:bg-gray-400 text-white">
-            Pay
-          </button>
+          {cart.length ? (
+            <Link to={"/dashboard/payment"}>
+              <button className="bg-[#EBAB23] cursor-pointer px-6 p-2 rounded-md font-bold hover:bg-gray-400 text-white">
+                Pay
+              </button>
+            </Link>
+          ) : (
+            <button className="px-6 p-2 rounded-md bg-gray-200 font-bold cursor-not-allowed">
+              Pay
+            </button>
+          )}
         </div>
         <div className="overflow-x-auto px-24 py-10 pb-24">
           <table className="table rounded-xl overflow-hidden main">
