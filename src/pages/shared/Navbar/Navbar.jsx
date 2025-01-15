@@ -41,7 +41,7 @@ const Navbar = () => {
       <Link to={"/shop/popular"}>
         <div className="flex items-center">OUR SHOP</div>
       </Link>
-      <Link to={"/dashboard/cart"}>
+      <Link to={"/dashboard"}>
         <button className="text-3xl flex">
           <IoMdCart />
           <div className="badge badge-secondary border-none text-black bg-[#ffbf11] -translate-y-2">

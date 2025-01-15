@@ -14,6 +14,7 @@ import { GiForkKnifeSpoon } from "react-icons/gi";
 import { MdLibraryBooks } from "react-icons/md";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useAdmin from "../Hooks/useAdmin";
+import { FaHistory } from "react-icons/fa";
 
 const DashBoardLayout = () => {
   const location = useLocation();
@@ -169,6 +170,23 @@ const DashBoardLayout = () => {
                         <FaCartShopping />
                       </span>
                       My Cart ({cart.length})
+                    </div>
+                  </DrawOutlineButton>
+                </Link>
+              </li>
+              <li className="text-lg  font-bold">
+                <Link
+                  className={`hover:bg-transparent ${
+                    isActive("/dashboard/payment-history") ? "text-white" : ""
+                  }`}
+                  to={"/dashboard/payment-history"}
+                >
+                  <DrawOutlineButton>
+                    <div className="flex items-center gap-1 text-lg  font-bold">
+                      <span className="text-2xl -translate-y-1">
+                        <FaHistory />
+                      </span>
+                      Payment History
                     </div>
                   </DrawOutlineButton>
                 </Link>

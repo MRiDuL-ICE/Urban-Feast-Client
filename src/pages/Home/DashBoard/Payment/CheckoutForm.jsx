@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useCart from "../../../../Hooks/useCart";
 import useAuth from "../../../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
@@ -11,19 +13,22 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const { user } = useAuth();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    axiosSecure
-      .post("/create-payment-intent", {
-        price: totalPrice,
-      })
-      .then((res) => {
-        console.log(res.data.clientSecret);
-        setClientSecret(res.data.clientSecret);
-      });
+    if (totalPrice > 0) {
+      axiosSecure
+        .post("/create-payment-intent", {
+          price: totalPrice,
+        })
+        .then((res) => {
+          console.log(res.data.clientSecret);
+          setClientSecret(res.data.clientSecret);
+        });
+    }
   }, [axiosSecure, totalPrice]);
 
   const handleSubmit = async (e) => {
@@ -74,12 +79,20 @@ const CheckoutForm = () => {
           price: totalPrice,
           transactionId: paymentIntent.id,
           date: new Date(),
-          cartId: cart.map((item) => item._id),
-          menuItemId: cart.map((item) => item.menuId),
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
           status: "pending",
         };
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
+        refetch();
+        if (res.data?.result?.insertedId) {
+          Swal.fire({
+            title: "Successful!",
+            text: "Payment have been done!",
+            icon: "success",
+          });
+          navigate("payment-history");
+        }
       }
     }
   };
