@@ -7,10 +7,12 @@ import { CgLogOut } from "react-icons/cg";
 import Swal from "sweetalert2";
 import { IoMdCart } from "react-icons/io";
 import useCart from "../../../Hooks/useCart";
+import useAdmin from "../../../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut, setUser, setLoading } = useAuth();
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     logOut()
@@ -41,6 +43,8 @@ const Navbar = () => {
       <Link to={"/shop/popular"}>
         <div className="flex items-center">OUR SHOP</div>
       </Link>
+      {user && isAdmin && <Link to={"/dashboard/adminHome"}>DASHBOARD</Link>}
+      {user && !isAdmin && <Link to={"/dashboard/userHome"}>DASHBOARD</Link>}
       <Link to={"/dashboard"}>
         <button className="text-3xl flex">
           <IoMdCart />
