@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import Swal from "sweetalert2";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://urban-feast-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
