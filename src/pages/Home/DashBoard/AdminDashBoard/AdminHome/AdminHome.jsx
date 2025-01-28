@@ -10,13 +10,25 @@ import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 const AdminHome = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: stats, refetch } = useQuery({
-    queryKey: ["stats"],
+  const {
+    data: stats,
+    refetch,
+    isPending,
+  } = useQuery({
+    queryKey: ["admin-stats"],
     queryFn: async () => {
       const res = await axiosSecure.get("/admin-stats");
       return res.data;
     },
   });
+
+  if (isPending) {
+    return (
+      <p className="text-center h-screen w-screen mx-auto justify-center items-center mt-80">
+        <span className="loading loading-bars loading-lg"></span>
+      </p>
+    );
+  }
 
   console.log(stats);
 
@@ -34,7 +46,7 @@ const AdminHome = () => {
               <IoWalletSharp />
             </div>
             <div className="text-3xl flex justify-start flex-col items-start">
-              <h2 className="font-bold text-4xl">{stats.revenue}</h2>
+              <h2 className="font-bold text-4xl">{stats?.revenue}</h2>
               <h3>Revenue</h3>
             </div>
           </div>
@@ -45,7 +57,7 @@ const AdminHome = () => {
               <FaUsers />
             </div>
             <div className="text-3xl flex justify-start flex-col items-start">
-              <h2 className="font-bold text-4xl">{stats.users}</h2>
+              <h2 className="font-bold text-4xl">{stats?.users}</h2>
               <h3>Users</h3>
             </div>{" "}
           </div>
@@ -56,7 +68,7 @@ const AdminHome = () => {
               <MdFastfood />
             </div>
             <div className="text-3xl flex justify-start flex-col items-start">
-              <h2 className="font-bold text-4xl">{stats.menuItems}</h2>
+              <h2 className="font-bold text-4xl">{stats?.menuItems}</h2>
               <h3>Products</h3>
             </div>{" "}
           </div>
@@ -67,7 +79,7 @@ const AdminHome = () => {
               <FaTruck />
             </div>
             <div className="text-3xl flex justify-start flex-col items-start">
-              <h2 className="font-bold text-4xl">{stats.orders}</h2>
+              <h2 className="font-bold text-4xl">{stats?.orders}</h2>
               <h3>Orders</h3>
             </div>{" "}
           </div>

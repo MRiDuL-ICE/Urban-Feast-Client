@@ -4,6 +4,7 @@ import MenuCard from "../../shared/MenuCard/MenuCard";
 
 const ChefRecommends = () => {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("menu.json")
@@ -11,8 +12,17 @@ const ChefRecommends = () => {
       .then((data) => {
         const recommend = data.filter((items) => items.category === "offered");
         setItems(recommend);
+        setLoading(false);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <p className="text-center h-screen w-screen mx-auto justify-center items-center mt-80">
+        <span className="loading loading-bars loading-lg"></span>
+      </p>
+    );
+  }
 
   return (
     <div className="lg:w-10/12 mx-auto w-10/12">

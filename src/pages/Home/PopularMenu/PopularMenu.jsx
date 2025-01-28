@@ -6,8 +6,16 @@ import useMenu from "../../../Hooks/UseMenu";
 import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
-  const [menu, loading] = useMenu();
+  const [menu, , loading] = useMenu();
   const popular = menu.filter((item) => item.category === "popular");
+
+  if (loading) {
+    return (
+      <p className="text-center h-screen w-screen mx-auto justify-center items-center mt-80">
+        <span className="loading loading-bars loading-lg"></span>
+      </p>
+    );
+  }
 
   return (
     <div className="my-10">
