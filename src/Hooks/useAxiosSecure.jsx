@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import Swal from "sweetalert2";
 
 const axiosSecure = axios.create({
-  baseURL: "https://urban-feast-server.vercel.app",
+  baseURL: "http://localhost:3000",
 });
 
 const useAxiosSecure = () => {
@@ -15,6 +15,7 @@ const useAxiosSecure = () => {
   axiosSecure.interceptors.request.use(
     function (config) {
       const token = localStorage.getItem("access-token");
+      console.log("Request stopped by interceptor before adding token", token);
       config.headers.authorization = `Bearer ${token}`;
       return config;
     },
