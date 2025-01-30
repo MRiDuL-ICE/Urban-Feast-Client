@@ -123,7 +123,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://urban-feast-server.vercel.app/menu/${params.id}`),
+          fetch(`http://localhost:3000/menu/${params.id}`),
       },
       {
         path: "manageBookings",

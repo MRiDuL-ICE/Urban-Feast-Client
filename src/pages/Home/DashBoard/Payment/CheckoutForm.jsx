@@ -91,7 +91,7 @@ const CheckoutForm = () => {
             text: "Payment have been done!",
             icon: "success",
           });
-          navigate("payment-history");
+          navigate("/dashboard/payment-history");
         }
       }
     }
