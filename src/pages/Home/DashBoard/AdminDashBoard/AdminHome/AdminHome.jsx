@@ -6,8 +6,16 @@ import { FaTruck } from "react-icons/fa";
 import useAuth from "../../../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from "recharts";
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from "recharts";
+import { PieChart, Pie, ResponsiveContainer } from "recharts";
 
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
@@ -81,6 +89,10 @@ const AdminHome = () => {
     );
   };
 
+  const pieChartData = chartData.map((data) => {
+    return { name: data.category, value: data.revenue };
+  });
+
   if (isPending) {
     return (
       <p className="text-center h-screen w-screen mx-auto justify-center items-center mt-80">
@@ -142,8 +154,8 @@ const AdminHome = () => {
           </div>
         </div>
       </div>
-      <div className="flex my-6 w-11/12 h-[550px] mx-auto bg-white">
-        <div className="w-1/2 border-2  ">
+      <div className="flex my-6 w-11/12 h-[550px] mx-auto bg-white p-6">
+        <div className="w-1/2">
           <BarChart
             width={700}
             height={500}
@@ -174,17 +186,18 @@ const AdminHome = () => {
         <div className="w-1/2">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart width={400} height={400}>
+              <Legend></Legend>
               <Pie
-                data={chartData}
+                data={pieChartData}
                 cx="50%"
                 cy="50%"
                 labelLine={false}
                 label={renderCustomizedLabel}
                 outerRadius={180}
                 fill="#8884d8"
-                dataKey="quantity"
+                dataKey="value"
               >
-                {chartData.map((entry, index) => (
+                {pieChartData.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
